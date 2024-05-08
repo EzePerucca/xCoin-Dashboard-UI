@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'node_modules/primeflex/primeflex.css';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+// @import "primeng/resources/primeng.css";
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+  

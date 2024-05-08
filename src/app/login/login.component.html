@@ -1,0 +1,28 @@
+<!-- <p-card>
+    <input type="text" pInputText [(ngModel)]="email" />
+    <p-password [(ngModel)]="password" [feedback]="false"></p-password>
+</p-card> -->
+<div class="flex justify-content-center align-items-center w-full h-full">
+    <p-card header="Blockchain Dashboard" subheader="" [style]="{ width: '360px' }">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="https://static.vecteezy.com/system/resources/thumbnails/011/004/881/small/computer-chip-electronic-circuit-board-for-technology-and-finance-concept-and-education-for-future-vector.jpg" />
+            <!-- <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" /> -->
+        </ng-template>
+        <div class="flex flex-column align-items-center w-full">
+            <span class="p-float-label my-3 w-full">
+                <input id="email" type="email" pInputText [(ngModel)]="email"/>
+                <label for="email">Email</label>
+            </span>
+            <span class="p-float-label my-3 w-full">
+                <p-password id="pass" [(ngModel)]="password" [feedback]="false" [toggleMask]="true" class="w-full" styleClass="w-full"></p-password>
+                <label for="pass">Password</label>
+            </span>
+        </div>
+        <div class="flex gap-3 pt-3">
+            <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full"/>
+            <p-button label="Login" severity="success" class="w-full" styleClass="w-full"></p-button>
+        </div>
+        <p-divider />
+        <p-button label="Sing In with Google" icon="fab fa-google" iconPos="right" (onClick)="login()" class="w-full" styleClass="w-full"></p-button>
+    </p-card>
+</div>
