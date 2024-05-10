@@ -12,7 +12,13 @@ import { PasswordModule } from 'primeng/password';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChartModule } from 'primeng/chart';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -32,7 +38,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InputTextModule,
     PasswordModule,
     CardModule,
-    DividerModule
+    DividerModule,
+    CheckboxModule,
+    ChartModule,
+    InputNumberModule,
+    TableModule,
+    TagModule,
+    TooltipModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
