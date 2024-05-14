@@ -39,7 +39,7 @@ jobs:
           cd runner/
           ls
           rm package-lock.json
-          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
 
 
       - name: Deploy application to AWS ElasticBeanstalk
