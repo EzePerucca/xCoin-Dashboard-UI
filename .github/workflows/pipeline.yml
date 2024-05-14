@@ -1,4 +1,4 @@
-name: CD
+name: CI/CD
 
 on:
   push:
@@ -41,7 +41,6 @@ jobs:
           rm package-lock.json
           zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
           mv xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
-          cd .. | ls 
 
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
@@ -55,17 +54,6 @@ jobs:
           version_label: ${{ github.run_id }} 
           deployment_package: xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
 
-      # - name: Deploy application to AWS EB environment
-      #   env:
-      #     IMAGE_TAG: ${{ steps.set-vars.outputs.short_sha }}
-      #     APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
-      #     EB_BUCKET: ${{ vars.EB_BUCKET }}
-      #     EB_APP: ${{ vars.EB_APP }}
-      #     EB_ENV: ${{ vars.EB_ENV }}
-      #   run: |
-      #     sed -i -e "s/\${IMAGE_TAG:-latest}/$IMAGE_TAG/g" docker-compose.yml
-      #     zip -r $APP_VERSION .ebextensions docker-compose.yml nginx.conf
-      #     aws s3 cp $APP_VERSION s3://$EB_BUCKET/$EB_APP/$APP_VERSION
-      #     aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label $APP_VERSION --source-bundle S3Bucket=$EB_BUCKET,S3Key=$EB_APP/$APP_VERSION
-      #     aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name $EB_ENV --version-label $APP_VERSION
-      #     aws elasticbeanstalk wait environment-updated --application-name $EB_APP --environment-name $EB_ENV --version-label $APP_VERSION
+      - name: Remove work data
+        id: rm
+        run: rm -rf /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI
