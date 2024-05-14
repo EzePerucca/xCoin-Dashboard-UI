@@ -3,7 +3,7 @@ name: CD
 on:
   push:
     branches:
-      - main
+      - ebstlk
 
 jobs:
   deploy:
@@ -16,10 +16,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          aws-access-key-id: ASIAWS3QKD3DKQ2WUNT6
+          aws-secret-access-key: 2BlFi0wCKIkusaFf96UOXB0Df9cZdeXprLF+A0lM
+          aws-region: us-east-1
+          aws-session-token: IQoJb3JpZ2luX2VjECYaCXVzLXdlc3QtMiJHMEUCIQDysGqHbEhUPLuY1w/lTSadIUgbdR/Oagg8Qwtpof0esgIgcYSDZrCDqbcnTqjDdiQeZqx+OqcEKCaxGgGuGWueCxAqvQIIj///////////ARABGgw0NTI4MTc3MjMwNzgiDKTFr6XWaThVDyDrQCqRAqExKUHFLSbtG1jsvUrHsMivsjtWT0uJKlQzYx8+1gxap2IKyLpBraW0DmCqiAxD7Df6BtPrnpFDUuBxsTMA5n8soXhB423lg5W52osGtYCw8nTpigXewukjV9AVfheyqrc8wn+eGThkyuwW9zQ+Zssvg2NQ183l+65Net+yvlNoW0gyChWcnyhu6GLQUNnMi9YqL/bz2Vom3q0v3qEr2g+Tzx2k3RqCu9aiSSSBWqVW87BZl+p8u2/5rASDvuB3ldIVgFdBp60bPIUCkyE8eJuCCEbm2jrfuxVuFQOGPs7Cbu5p3/j1hOdnSrDQbS9IANUYPj9UU97xJLZAukjpYxml9GDojI4QjIm4OGcn0KFpODCT242yBjqdAQtpO3EPdTrurTnDeF63ifCCxZxsXl0nd4BDVuxr3t0PIu0vbvjN0Kfm1JBa2Xc7w8YuzJYjJ7ppKFgbrenkEmK3dieIfKagy9M89eEhJNyXeJCA1ztZr7TL08vbtq9/+uh/ZIM+GDPbqcUsLdIbhHDX0kfqoAD1i8mSork5JrAiV/qUsbFyUwH6mGPzOuYc5wDX+4TYGHAzb++sbKc=
 
       - name: Set vars
         id: set-vars
@@ -43,10 +43,10 @@ jobs:
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }} 
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          aws_session_token: ${{secrets.AWS_SESSION_TOKEN}}
-          region: ${{ secrets.AWS_REGION }}
+          aws_access_key: ASIAWS3QKD3DKQ2WUNT6 
+          aws_secret_key: 2BlFi0wCKIkusaFf96UOXB0Df9cZdeXprLF+A0lM
+          aws_session_token: IQoJb3JpZ2luX2VjECYaCXVzLXdlc3QtMiJHMEUCIQDysGqHbEhUPLuY1w/lTSadIUgbdR/Oagg8Qwtpof0esgIgcYSDZrCDqbcnTqjDdiQeZqx+OqcEKCaxGgGuGWueCxAqvQIIj///////////ARABGgw0NTI4MTc3MjMwNzgiDKTFr6XWaThVDyDrQCqRAqExKUHFLSbtG1jsvUrHsMivsjtWT0uJKlQzYx8+1gxap2IKyLpBraW0DmCqiAxD7Df6BtPrnpFDUuBxsTMA5n8soXhB423lg5W52osGtYCw8nTpigXewukjV9AVfheyqrc8wn+eGThkyuwW9zQ+Zssvg2NQ183l+65Net+yvlNoW0gyChWcnyhu6GLQUNnMi9YqL/bz2Vom3q0v3qEr2g+Tzx2k3RqCu9aiSSSBWqVW87BZl+p8u2/5rASDvuB3ldIVgFdBp60bPIUCkyE8eJuCCEbm2jrfuxVuFQOGPs7Cbu5p3/j1hOdnSrDQbS9IANUYPj9UU97xJLZAukjpYxml9GDojI4QjIm4OGcn0KFpODCT242yBjqdAQtpO3EPdTrurTnDeF63ifCCxZxsXl0nd4BDVuxr3t0PIu0vbvjN0Kfm1JBa2Xc7w8YuzJYjJ7ppKFgbrenkEmK3dieIfKagy9M89eEhJNyXeJCA1ztZr7TL08vbtq9/+uh/ZIM+GDPbqcUsLdIbhHDX0kfqoAD1i8mSork5JrAiV/qUsbFyUwH6mGPzOuYc5wDX+4TYGHAzb++sbKc=
+          region: us-east-1
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
           version_label: ${{ github.run_id }} 
