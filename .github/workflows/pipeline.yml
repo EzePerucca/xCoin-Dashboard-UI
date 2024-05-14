@@ -24,7 +24,7 @@ jobs:
       - name: Set vars
         id: set-vars
         run: |
-          echo "short_sha=$(git rev-pa  rse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
 
       - name: Install
