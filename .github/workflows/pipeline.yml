@@ -40,6 +40,8 @@ jobs:
           cd runner/
           rm package-lock.json
           zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
+          mv xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
+          cd .. | ls 
 
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
