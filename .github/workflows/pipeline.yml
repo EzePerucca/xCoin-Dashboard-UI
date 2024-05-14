@@ -45,9 +45,9 @@ jobs:
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws-access-key: ASIAWS3QKD3DAIVYM2RB
-          aws-secret-key: 998MjulRFNMtmJdSpm8AXZEiAKsQlEqK6uUgUfHk
-          aws-session-token: IQoJb3JpZ2luX2VjECoaCXVzLXdlc3QtMiJHMEUCIBfayXPpHgYqAxRJzaN/iTV/kLO9A3wLKEhIQeftXfnoAiEAgoKGYCJPpAn1OBrvgGEuVdOCUt58wFz7h7nwAL87ZxsqvQIIk///////////ARABGgw0NTI4MTc3MjMwNzgiDIxhXg7IvD+7R0HjOCqRAhDDBMNsoQd4vhFS7Jq+2sSG3krxhC8JuarwetFF98bbRh6GYgN2wYnRqeycAnJmzN3NCQJdi9MIDrAnEdAvhGDvGEeiWpjpoECxcI4Msn2/vn5e3mRR3XA8BT7EWO26rTz0Uh7DBsmOE8hOkp4yx8wJvKtyl4O3QuSvB6FrGV6uFMSgZ5ND8UmUO+R/+YtXZPUUZFqMkfHPKg9NEqIgRJStlPPhFM8b4NTjcLIYLNm/cTqayWZIp+9ixbfAkZCWjaHcyiBytIg93Tf12ssnOnsA3/FqHIV4fF9ojvlSIRDY63mQhP7w9/QS3UIMOeU3FjTPrbBtRSusrk05MGS7dE0HQzVu0ibqYp2QPkslXZ6gLDCQzo6yBjqdAeuWAR9q8dmQuhstpmCs1c2bYEQGzL1rYEntQf/nvE44ta0MyehMn7mfYTie34Ny0HJOgo1IqRNpszEyHFcUwudvjDfmYiNTcRGY7wMj9H37VdeeStp142JEWiDP15u7LSYrO4YwNRpm5/wkvGBUXUuFucX0QuR6/KZuR/w+v/Ztf72BFcWNVFhLpjQP38qgBrqvEwum4Vkeimdln+I=
+          aws_access_key: ASIAWS3QKD3DAIVYM2RB
+          aws_secret_key: 998MjulRFNMtmJdSpm8AXZEiAKsQlEqK6uUgUfHk
+          aws_session_token: IQoJb3JpZ2luX2VjECoaCXVzLXdlc3QtMiJHMEUCIBfayXPpHgYqAxRJzaN/iTV/kLO9A3wLKEhIQeftXfnoAiEAgoKGYCJPpAn1OBrvgGEuVdOCUt58wFz7h7nwAL87ZxsqvQIIk///////////ARABGgw0NTI4MTc3MjMwNzgiDIxhXg7IvD+7R0HjOCqRAhDDBMNsoQd4vhFS7Jq+2sSG3krxhC8JuarwetFF98bbRh6GYgN2wYnRqeycAnJmzN3NCQJdi9MIDrAnEdAvhGDvGEeiWpjpoECxcI4Msn2/vn5e3mRR3XA8BT7EWO26rTz0Uh7DBsmOE8hOkp4yx8wJvKtyl4O3QuSvB6FrGV6uFMSgZ5ND8UmUO+R/+YtXZPUUZFqMkfHPKg9NEqIgRJStlPPhFM8b4NTjcLIYLNm/cTqayWZIp+9ixbfAkZCWjaHcyiBytIg93Tf12ssnOnsA3/FqHIV4fF9ojvlSIRDY63mQhP7w9/QS3UIMOeU3FjTPrbBtRSusrk05MGS7dE0HQzVu0ibqYp2QPkslXZ6gLDCQzo6yBjqdAeuWAR9q8dmQuhstpmCs1c2bYEQGzL1rYEntQf/nvE44ta0MyehMn7mfYTie34Ny0HJOgo1IqRNpszEyHFcUwudvjDfmYiNTcRGY7wMj9H37VdeeStp142JEWiDP15u7LSYrO4YwNRpm5/wkvGBUXUuFucX0QuR6/KZuR/w+v/Ztf72BFcWNVFhLpjQP38qgBrqvEwum4Vkeimdln+I=
           region: us-east-1
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
