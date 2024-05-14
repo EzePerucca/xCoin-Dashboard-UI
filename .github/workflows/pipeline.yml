@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - ebstlk
+      - main
 
 jobs:
   deploy:
@@ -53,7 +53,3 @@ jobs:
           environment_name: xcoin-wallet-prod
           version_label: ${{ github.run_id }} 
           deployment_package: xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
-
-      - name: Remove work data
-        id: rm
-        run: rm -rf /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI
