@@ -35,9 +35,9 @@ jobs:
         id: build
         run: |
           npm run build --prod
-          mv dist runner/
-          rm runner/package-lock.json
-          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip runner/
+          mv dist runner/ | cd runner/
+          rm package-lock.json
+          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
 
 
       - name: Deploy application to AWS ElasticBeanstalk
