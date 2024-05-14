@@ -2,6 +2,7 @@
 
 # Compiled output
 runner/dist
+runner/xwallet.zip
 /dist
 /tmp
 /out-tsc

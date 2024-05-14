@@ -1,0 +1,68 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+
+      - name: Set vars
+        id: set-vars
+        run: |
+          echo "short_sha=$(git rev-pa  rse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
+
+      - name: Install
+        id: install
+        run: npm install
+      
+      - name: Build
+        id: build
+        run: |
+          npm run build --prod
+          mv dist runner/
+          rm runner/package-lock.json
+          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip runner/
+
+
+      - name: Deploy application to AWS ElasticBeanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }} 
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_session_token: ${{secrets.AWS_SESSION_TOKEN}}
+          region: ${{ secrets.AWS_REGION }}
+          application_name: xcoinwallet 
+          environment_name: xcoin-wallet-prod
+          version_label: ${{ github.run_id }} 
+          deployment_package: xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+
+      # - name: Deploy application to AWS EB environment
+      #   env:
+      #     IMAGE_TAG: ${{ steps.set-vars.outputs.short_sha }}
+      #     APP_VERSION: app-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+      #     EB_BUCKET: ${{ vars.EB_BUCKET }}
+      #     EB_APP: ${{ vars.EB_APP }}
+      #     EB_ENV: ${{ vars.EB_ENV }}
+      #   run: |
+      #     sed -i -e "s/\${IMAGE_TAG:-latest}/$IMAGE_TAG/g" docker-compose.yml
+      #     zip -r $APP_VERSION .ebextensions docker-compose.yml nginx.conf
+      #     aws s3 cp $APP_VERSION s3://$EB_BUCKET/$EB_APP/$APP_VERSION
+      #     aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label $APP_VERSION --source-bundle S3Bucket=$EB_BUCKET,S3Key=$EB_APP/$APP_VERSION
+      #     aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name $EB_ENV --version-label $APP_VERSION
+      #     aws elasticbeanstalk wait environment-updated --application-name $EB_APP --environment-name $EB_ENV --version-label $APP_VERSION
