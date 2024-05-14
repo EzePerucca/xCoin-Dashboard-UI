@@ -35,8 +35,8 @@ jobs:
         id: build
         run: |
           npm run build --prod
-          ls
-          mv dist runner/ | cd runner/
+          mv dist runner/
+          cd runner/
           ls
           rm package-lock.json
           zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
