@@ -1,0 +1,55 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ASIAWS3QKD3DKQ2WUNT6
+          aws-secret-access-key: 2BlFi0wCKIkusaFf96UOXB0Df9cZdeXprLF+A0lM
+          aws-region: us-east-1
+          aws-session-token: IQoJb3JpZ2luX2VjECYaCXVzLXdlc3QtMiJHMEUCIQDysGqHbEhUPLuY1w/lTSadIUgbdR/Oagg8Qwtpof0esgIgcYSDZrCDqbcnTqjDdiQeZqx+OqcEKCaxGgGuGWueCxAqvQIIj///////////ARABGgw0NTI4MTc3MjMwNzgiDKTFr6XWaThVDyDrQCqRAqExKUHFLSbtG1jsvUrHsMivsjtWT0uJKlQzYx8+1gxap2IKyLpBraW0DmCqiAxD7Df6BtPrnpFDUuBxsTMA5n8soXhB423lg5W52osGtYCw8nTpigXewukjV9AVfheyqrc8wn+eGThkyuwW9zQ+Zssvg2NQ183l+65Net+yvlNoW0gyChWcnyhu6GLQUNnMi9YqL/bz2Vom3q0v3qEr2g+Tzx2k3RqCu9aiSSSBWqVW87BZl+p8u2/5rASDvuB3ldIVgFdBp60bPIUCkyE8eJuCCEbm2jrfuxVuFQOGPs7Cbu5p3/j1hOdnSrDQbS9IANUYPj9UU97xJLZAukjpYxml9GDojI4QjIm4OGcn0KFpODCT242yBjqdAQtpO3EPdTrurTnDeF63ifCCxZxsXl0nd4BDVuxr3t0PIu0vbvjN0Kfm1JBa2Xc7w8YuzJYjJ7ppKFgbrenkEmK3dieIfKagy9M89eEhJNyXeJCA1ztZr7TL08vbtq9/+uh/ZIM+GDPbqcUsLdIbhHDX0kfqoAD1i8mSork5JrAiV/qUsbFyUwH6mGPzOuYc5wDX+4TYGHAzb++sbKc=
+
+      - name: Set vars
+        id: set-vars
+        run: |
+          echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
+
+      - name: Install
+        id: install
+        run: npm install
+      
+      - name: Build
+        id: build
+        run: |
+          npm run build --prod
+          mv dist runner/
+          pwd
+          cd runner/
+          rm package-lock.json
+          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
+          mv xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
+
+      - name: Deploy application to AWS ElasticBeanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ASIAWS3QKD3DKQ2WUNT6 
+          aws_secret_key: 2BlFi0wCKIkusaFf96UOXB0Df9cZdeXprLF+A0lM
+          aws_session_token: IQoJb3JpZ2luX2VjECYaCXVzLXdlc3QtMiJHMEUCIQDysGqHbEhUPLuY1w/lTSadIUgbdR/Oagg8Qwtpof0esgIgcYSDZrCDqbcnTqjDdiQeZqx+OqcEKCaxGgGuGWueCxAqvQIIj///////////ARABGgw0NTI4MTc3MjMwNzgiDKTFr6XWaThVDyDrQCqRAqExKUHFLSbtG1jsvUrHsMivsjtWT0uJKlQzYx8+1gxap2IKyLpBraW0DmCqiAxD7Df6BtPrnpFDUuBxsTMA5n8soXhB423lg5W52osGtYCw8nTpigXewukjV9AVfheyqrc8wn+eGThkyuwW9zQ+Zssvg2NQ183l+65Net+yvlNoW0gyChWcnyhu6GLQUNnMi9YqL/bz2Vom3q0v3qEr2g+Tzx2k3RqCu9aiSSSBWqVW87BZl+p8u2/5rASDvuB3ldIVgFdBp60bPIUCkyE8eJuCCEbm2jrfuxVuFQOGPs7Cbu5p3/j1hOdnSrDQbS9IANUYPj9UU97xJLZAukjpYxml9GDojI4QjIm4OGcn0KFpODCT242yBjqdAQtpO3EPdTrurTnDeF63ifCCxZxsXl0nd4BDVuxr3t0PIu0vbvjN0Kfm1JBa2Xc7w8YuzJYjJ7ppKFgbrenkEmK3dieIfKagy9M89eEhJNyXeJCA1ztZr7TL08vbtq9/+uh/ZIM+GDPbqcUsLdIbhHDX0kfqoAD1i8mSork5JrAiV/qUsbFyUwH6mGPzOuYc5wDX+4TYGHAzb++sbKc=
+          region: us-east-1
+          application_name: xcoinwallet 
+          environment_name: xcoin-wallet-prod
+          version_label: ${{ github.run_id }} 
+          deployment_package: xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
