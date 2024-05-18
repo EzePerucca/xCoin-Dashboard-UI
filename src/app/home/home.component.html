@@ -1,16 +1,16 @@
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12 p-0 pr-3 pl-3">
         <div class="flex flex-column sm:flex-row align-items-center gap-4">
             <div class="flex flex-column sm:flex-row align-items-center gap-3">
-                <img src="assets/elon.png" class="w-4rem h-4rem flex-shrink-0" style="border-radius: 50%;">
                 <div class="flex flex-column align-items-center sm:align-items-start">
-                    <span class="text-900 font-bold text-4xl">Welcome Elon</span>
-                    <p class="text-600 m-0">Your last login was on 05/10/2024 at 10:24 am</p>
+                    <span class="title font-bold text-5xl">Crypto Insight</span>
+                    <span class="align-self-end title font-bold text-xs">an xWallet product</span>
                 </div>
             </div>
-            <div class="flex gap-2 sm:ml-auto">
-                <p-button icon="pi pi-arrows-h" [rounded]="true" [outlined]="true" pTooltip="Exchange" tooltipPosition="bottom"/>
-                <p-button icon="pi pi-download" [rounded]="true" [outlined]="true" pTooltip="Withdraw" tooltipPosition="bottom"/>
+            <div class="flex gap-4 sm:ml-auto">
+                <span class="connection-indicator good"></span>
+                <img src="assets/elon.png" class="w-3rem h-3rem flex-shrink-0" style="border-radius: 50%;">
+                <p-button icon="pi pi-cog" [rounded]="true" [outlined]="true" pTooltip="Config" tooltipPosition="bottom"/>
                 <p-button icon="pi pi-sign-out" [rounded]="true" [outlined]="true" pTooltip="Sign Out" tooltipPosition="bottom" (onClick)="logOut()"/>
             </div>
         </div>
@@ -24,32 +24,41 @@
                     d="M0 400L30 386.5C60 373 120 346 180 334.8C240 323.7 300 328.3 360 345.2C420 362 480 391 540 392C600 393 660 366 720 355.2C780 344.3 840 349.7 870 352.3L900 355L900 601L870 601C840 601 780 601 720 601C660 601 600 601 540 601C480 601 420 601 360 601C300 601 240 601 180 601C120 601 60 601 30 601L0 601Z"
                     fill="var(--primary-500)" stroke-linecap="round" stroke-linejoin="miter"></path>
             </svg>
-            <div class="z-2 relative text-white">
-                <div class="text-xl font-semibold mb-3">Debit Card</div>
-                <div class="mb-1 font-semibold">Balance</div>
-                <div class="text-2xl mb-5 font-bold">$2.000,00</div>
-                <div class="flex align-items-center justify-content-between"><span class="text-lg">**** **** ****
-                        1412</span><span class="font-medium text-lg">12/26</span></div>
+            <div class="z-2 relative text-white h-9rem">
+                <div class="text-2xl font-semibold mb-2">Welcome back, Elon!</div>
+                <div class="mt-6">
+                    <div class="mb-2 font-semibold">Your xCoin Balance</div>
+                    <div class="flex align-items-end justify-content-between mb-1 ml-1">
+                        <span class="text-3xl font-bold">7,890,745</span>
+                        <span class="font-medium text-sm">17:23:09 18/05</span>
+                    </div>
+                </div>
             </div>
         </p-card>
     </div>
-    <div class="col-12 md:col-6 xl:col-4">
+    <div class="col-12 md:col-6 xl:col-2">
         <p-card>
-            <div class="flex align-items-center justify-content-between mb-3">
-                <div class="text-900 text-xl font-semibold">Credit Card</div><img
-                    src="assets/demo/images/banking/visa.svg" class="h-1rem">
+            <div class="flex flex-column align-items-center justify-content-center p-2">
+                <i class="pi pi-money-bill text-primary text-4xl mb-4"></i>
+                <span class="text-900 text-lg mb-4 font-medium">Total Supply</span>
+                <span class="text-900 text-2xl text-primary font-bold">24,345</span>
             </div>
-            <div class="text-600 mb-1 font-semibold">Debt</div>
-            <div class="text-900 text-2xl text-primary mb-5 font-bold">$1.500,00</div>
-            <div class="flex align-items-center justify-content-between"><span class="text-900 text-lg">**** **** ****
-                    1231</span><span class="text-600 font-medium text-lg">12/24</span></div>
         </p-card>
     </div>
     <div class="col-12 md:col-6 xl:col-2">
         <p-card>
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-bitcoin text-primary text-4xl mb-4"></i>
-                <span class="text-900 text-lg mb-4 font-medium">Total Tokens</span>
+                <span class="text-900 text-lg mb-4 font-medium">Token Value</span>
+                <span class="text-900 text-2xl text-primary font-bold">$10,416.11</span>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6 xl:col-2">
+        <p-card>
+            <div class="flex flex-column align-items-center justify-content-center p-2">
+                <i class="pi pi-gauge text-primary text-4xl mb-4"></i>
+                <span class="text-900 text-lg mb-4 font-medium">Approval Rate</span>
                 <span class="text-900 text-2xl text-primary font-bold">24,345</span>
             </div>
         </p-card>
@@ -58,43 +67,21 @@
         <p-card>
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-dollar text-primary text-4xl mb-4"></i>
-                <span class="text-900 text-lg mb-4 font-medium">Token Value</span>
-                <span class="text-900 text-2xl text-primary font-bold">$10,416.11</span>
+                <span class="text-900 text-lg mb-4 font-medium">Total Value</span>
+                <span class="text-900 text-2xl text-primary font-bold">$1,805,416.11</span>
             </div>
         </p-card>
     </div>
     <div class="col-12 xl:col-4">
-        <p-card>
+        <p-card class="full-h-card">
             <div class="text-900 text-xl font-semibold mb-3">Recent Transactions</div>
-            <ul class="list-none p-0 m-0">
-                <li class="flex align-items-center p-3 mb-3 border-bottom-1 surface-border">
-                    <!-- <img src="" class="w-3rem flex-shrink-0 mr-3"> -->
-                    <div class="flex flex-column"><span
-                            class="text-xl font-medium text-900 mb-1">Agustin Perez</span><span>05/23/2022</span></div><span
-                        class="text-xl text-900 ml-auto font-semibold">$250.00</span>
-                </li>
-                <li class="flex align-items-center p-3 mb-3 border-bottom-1 surface-border">
-                    <!-- <img src="" class="w-3rem flex-shrink-0 mr-3"> -->
-                    <div class="flex flex-column"><span
-                            class="text-xl font-medium text-900 mb-1">Lucas Marin</span><span>04/12/2022</span></div><span
-                        class="text-xl text-900 ml-auto font-semibold">$50.00</span>
-                </li>
-                <li class="flex align-items-center p-3 mb-3 border-bottom-1 surface-border">
-                    <!-- <img src="a" class="w-3rem flex-shrink-0 mr-3 border-circle"> -->
-                    <div class="flex flex-column"><span class="text-xl font-medium text-900 mb-1">Alfonso Lopez</span><span>04/29/2022</span></div><span
-                        class="text-xl text-900 ml-auto font-semibold">$60.00</span>
-                </li>
-                <li class="flex align-items-center p-3 mb-3 border-bottom-1 surface-border">
-                    <!-- <img src="" class="w-3rem flex-shrink-0 mr-3"> -->
-                    <div class="flex flex-column"><span
-                            class="text-xl font-medium text-900 mb-1">Fernando Lozada</span><span>04/15/2022</span></div><span
-                        class="text-xl text-900 ml-auto font-semibold">$15.24</span>
-                </li>
-                <li class="flex align-items-center p-3 mb-3">
-                    <!-- <img src="" class="w-3rem flex-shrink-0 mr-3"> -->
-                    <div class="flex flex-column"><span class="text-xl font-medium text-900 mb-1">Agustina
-                            Quintero</span><span>04/12/2022</span></div><span
-                        class="text-xl text-900 ml-auto font-semibold">$12.50</span>
+            <ul class="list-none p-0 m-0" style="max-height: 500px; overflow-y: auto;">
+                <li *ngFor="let transaction of transactions" class="flex align-items-center p-3 mb-3 border-bottom-1 surface-border">
+                    <div class="flex flex-column">
+                      <span class="text-xl font-medium text-900 mb-1">{{ transaction.name }}</span>
+                      <span>{{ transaction.date }}</span>
+                    </div>
+                    <span class="text-xl text-900 ml-auto font-semibold">{{ transaction.amount | currency }}</span>
                 </li>
             </ul>
         </p-card>
@@ -105,4 +92,152 @@
             <p-chart type="line" [data]="chartData" [options]="options" />
         </p-card>
     </div>
+    <div class="col-12 xl:col-4 max-h-30rem">
+        <p-card class="">
+            <div class="text-900 text-xl font-semibold mb-3">Property Distribution</div>
+            <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" width="350" height="350" />
+        </p-card>
+    </div>
+    <div class="col-12 xl:col-8 max-h-30rem">
+        <p-card class="">
+            <div class="text-900 text-xl font-semibold mb-3">Blockchain overview</div>
+            <div class="flex row-gap-2 flex-wrap">
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class="">
+                            <span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class="">
+                            <span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                <p-card class="col-4 md:col-2 xl:col-2">
+                    <span class="font-semibold text-lg">Sales</span>
+                    <div class="flex justify-content-between align-items-start mt-3">
+                        <div class=""><span class="text-4xl font-bold text-900">120</span>
+                            <div class="text-green-500">
+                                <span class="font-medium">+12%</span>
+                                <i class="pi pi-arrow-up text-xs ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </p-card>
+    </div>
+    <p-divider class="col-12"/>
 </div>

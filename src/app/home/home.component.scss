@@ -1,0 +1,100 @@
+.connection-indicator {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  // animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Define base styles, initially hidden */
+.connection-indicator::before,
+.connection-indicator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  /* Transparent inner circle */
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0);
+  /* Hidden outer glow */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Green connection indicator (modify for red) */
+.connection-indicator.good {
+  background-color: #11c711;
+  animation: glow-good 1.5s ease-in-out infinite alternate;
+
+  .connection-indicator::before {
+    opacity: 1;
+    box-shadow: 0 0 5px 3px rgba(0, 255, 0, 0.5);
+    /* Green outer glow */
+  }
+}
+
+/* Red connection indicator (modify properties from .good) */
+.connection-indicator.bad {
+  background-color: red;
+  animation: glow-bad 1.5s ease-in-out infinite alternate;
+
+  .connection-indicator::after {
+    opacity: 1;
+    box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.5);
+    /* Red outer glow */
+  }
+}
+
+/* Animation for glow effect (unchanged) */
+@keyframes glow-good {
+  from {
+    box-shadow: 0 0 5px 3px rgba(0, 255, 0, 0.6);
+  }
+
+  /* More opaque at start */
+  to {
+    box-shadow: 0 0 5px 3px rgba(0, 255, 0, 0.2);
+  }
+
+  /* Less opaque at end */
+}
+
+@keyframes glow-bad {
+  from {
+    box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.6);
+  }
+
+  /* More opaque at start  */
+  to {
+    box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.2);
+  }
+
+  /* Less opaque at end  */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,.3);
+  background-color: #8b8b8b5d;
+}
+
+::ng-deep{
+
+  .full-h-card {
+    .p-card,
+    .p-card-body,
+    .p-card-content {
+      height: 100% !important;
+    }
+  }
+  
+}
+
+.title {
+  font-size: 70px;
+  font-weight: 600;
+  background-image: linear-gradient(to right, var(--primary-600) 45%, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
