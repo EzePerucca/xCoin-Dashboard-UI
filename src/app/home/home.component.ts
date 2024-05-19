@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthGoogleService } from '../auth-google.service';
 import { Router } from '@angular/router';
 import { AlchemyApiService } from '../alchemy-api.service';
+import { ApiService } from '../api.service';
+import { catchError, forkJoin, interval, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,7 @@ import { AlchemyApiService } from '../alchemy-api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    infoData: any = {};
     chartData: any = null;
     options: any = null;
     pieData: any = null;
@@ -28,19 +31,43 @@ export class HomeComponent implements OnInit {
     constructor(
         private authGoogleService: AuthGoogleService,
         private router: Router,
+        private apiService: ApiService,
         private alchemyApiService: AlchemyApiService
     ) { }
 
     ngOnInit() {
         this.initCharts();
-        this.alchemyApiService.getBlockNumber().subscribe(
-            response => {
-              console.log('POST response:', response);
-            },
-            error => {
-              console.error('POST error:', error);
-            }
-          );
+        // this.getInfoData();
+        this.fetchData().subscribe();
+
+        // If you need to refresh data periodically
+        interval(60000).pipe( // Adjust the interval as needed
+          switchMap(() => this.fetchData())
+        ).subscribe();
+    }
+    
+    fetchData() {
+        return forkJoin({
+            blockNumber: this.alchemyApiService.getBlockNumber().pipe(
+                catchError(error => {
+                    console.error('POST error (getBlockNumber):', error);
+                    return of({ result: null });
+                })
+            ),
+            gasPrice: this.alchemyApiService.getCurrentGasPrice().pipe(
+                catchError(error => {
+                    console.error('POST error (getCurrentGasPrice):', error);
+                    return of({ result: null });
+                })
+            )
+        }).pipe(
+            tap(({ blockNumber, gasPrice }) => {
+                console.log('POST response (blockNumber):', blockNumber);
+                console.log('POST response (gasPrice):', gasPrice);
+                this.infoData.currentBlockNumber = blockNumber.result;
+                this.infoData.currentGasPrice = gasPrice.result;
+            })
+        );
     }
 
     showData() {
@@ -48,10 +75,7 @@ export class HomeComponent implements OnInit {
         console.log
     }
 
-    logOut() {
-        this.authGoogleService.logout();
-        this.router.navigate(['login'])
-    }
+
 
     initCharts() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -133,5 +157,12 @@ export class HomeComponent implements OnInit {
             }
         };
     }
+
+    //#region Session
+    logOut() {
+        this.authGoogleService.logout();
+        this.router.navigate(['login'])
+    }
+    //#endregion Session
 }
 
