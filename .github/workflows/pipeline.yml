@@ -48,6 +48,7 @@ jobs:
           aws_access_key: ASIAWS3QKD3DKTBGOZAM
           aws_secret_key: smGCodLU+ixNUkBcXJ4Bezm6bcRN7IMn+O35Agdb
           aws_session_token: IQoJb3JpZ2luX2VjELz//////////wEaCXVzLXdlc3QtMiJIMEYCIQDECuy4o26kAz8drOXYXQAOOE19SZLF94oRehf3jC2v7QIhAOxt9bkZtfJkX3gUBkN+5ftvb85YVWwudyqOZBvIMZgcKrQCCDQQARoMNDUyODE3NzIzMDc4IgzBUc6eSAqZUSGNoRUqkQJPNfvcdzqY2+xGnOLW3UnNwbdTnL/OsOglcVWot3lyz4s7lAt87eMh0T6OuP8OihdAafy4DZTYJn7c/HDjlF6gloyh5GS+EwRGsToSoZM68u4G2pJu1UvNCljewOm3Vs9EPQ47oHRx6hw2BhiSZ++HBm6RUM6/eDaYG0Eguh/1aCWeZt5yRfI+prm2mvVG7AkwnZBURnK+osjaG5Q5s5TIhvn7w/cL3/fYz++MsLxl3FulirN1sVMMx/7lnW8uskPtvEUzyk7DqBnIahYsslsKa0vmVVR321qNNUHXpBJpCzmAg+FFz4WTSBtUxhquyfTykmi+hGmkpPctCrVqMEXNfgRxyfJAXKqNveucsyqORskw/sOusgY6nAGML0sviLzCgX75IafM1pUpSGwE1TwvZDprPeSdcKUA0C5qmfc2xdk33OKhayEVivyKAH3PSuQdt8pOsG8HaUXcWtuyaM7PjztM421iSE0TigmtavVvWAGR6ahswhX1A/yLzHY+AtTKvROFtVCAq1jLJD6N/8ZWEEh/LVeTLP65YT9enXCjeJig9OxzzlB+S+z7R6KiaD2KRGigy/8=
+          region: us-east-1
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
           version_label: ${{ github.run_id }} 
