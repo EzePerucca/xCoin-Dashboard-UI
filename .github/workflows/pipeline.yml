@@ -16,10 +16,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ASIAWS3QKD3DDRBMB4P4
-          aws-secret-access-key: MgIRT/wCzXWzhH/SHWZdD1eOWR9MdD24w+GjySp6
+          aws-access-key-id: ASIAWS3QKD3DKTBGOZAM
+          aws-secret-access-key: smGCodLU+ixNUkBcXJ4Bezm6bcRN7IMn+O35Agdb
           aws-region: us-east-1
-          aws-session-token: IQoJb3JpZ2luX2VjEKD//////////wEaCXVzLXdlc3QtMiJGMEQCIAHNUhfLqlCKhSbWF1I6ZuKjRm6l8pqs89xw1YsJpXNrAiA4U6sf/HWUlzWdXNZiZ8YRCx8hlLVrGAAS7AE67OyVDiq0AggZEAEaDDQ1MjgxNzcyMzA3OCIMdyl7qvvCOHMbOEeVKpECjcQq/cRBzbzn49rv2zZEo0zNpXAdGgBy4/5O6zfviraV2KYu1aE4eINekI8Es/l5elqv1dOqQSnbjkYpyCrWB+MImFXrxcXWlLZNR1vDrxAApUDh0QuikpmjOH6oRcoYcL9ubjvhdD5VyY10dJpTNod1x+FwkAn1slaxx9pdkzHqvlXfa4gNGZICm8uIC9+rDAu9vgF2VeuRxCkA6peuJGL/EtEM9648+/0ypRYb+Itzx/8S9D4JjW7dnQQuD5dI00xdh1njaCJGTKKGHHdbpA8X2Ry0nYxEAgJ9Ef3YtvQ0VWyKpujdZhpmIbaXwDsm9ho2AFVDIY22dFa5kVoFA9je3fFOT8v1QosX3x7KJkGfMLi/qLIGOp4BXyA4hjJMJ5wrPV2ui5zXy1lVBIsOZTzimMebGXPbdEcvtJRCmxbjWoO5w2t2bw/5utWFR9u7JILuU1D9EOuphzWpFPiuhTZOmIyFN2FEdi1GAS5AteWwlyWncq4n3Ubi+blfJZbEyVFejcNWpO5LgzuVg8O2rXtN6LaetMAeaS4yGHdSU9DLl991mBLLvB89DZQFNWEmlr2B2Il2E1Q=
+          aws-session-token: IQoJb3JpZ2luX2VjELz//////////wEaCXVzLXdlc3QtMiJIMEYCIQDECuy4o26kAz8drOXYXQAOOE19SZLF94oRehf3jC2v7QIhAOxt9bkZtfJkX3gUBkN+5ftvb85YVWwudyqOZBvIMZgcKrQCCDQQARoMNDUyODE3NzIzMDc4IgzBUc6eSAqZUSGNoRUqkQJPNfvcdzqY2+xGnOLW3UnNwbdTnL/OsOglcVWot3lyz4s7lAt87eMh0T6OuP8OihdAafy4DZTYJn7c/HDjlF6gloyh5GS+EwRGsToSoZM68u4G2pJu1UvNCljewOm3Vs9EPQ47oHRx6hw2BhiSZ++HBm6RUM6/eDaYG0Eguh/1aCWeZt5yRfI+prm2mvVG7AkwnZBURnK+osjaG5Q5s5TIhvn7w/cL3/fYz++MsLxl3FulirN1sVMMx/7lnW8uskPtvEUzyk7DqBnIahYsslsKa0vmVVR321qNNUHXpBJpCzmAg+FFz4WTSBtUxhquyfTykmi+hGmkpPctCrVqMEXNfgRxyfJAXKqNveucsyqORskw/sOusgY6nAGML0sviLzCgX75IafM1pUpSGwE1TwvZDprPeSdcKUA0C5qmfc2xdk33OKhayEVivyKAH3PSuQdt8pOsG8HaUXcWtuyaM7PjztM421iSE0TigmtavVvWAGR6ahswhX1A/yLzHY+AtTKvROFtVCAq1jLJD6N/8ZWEEh/LVeTLP65YT9enXCjeJig9OxzzlB+S+z7R6KiaD2KRGigy/8=
           
       - name: Set vars
         id: set-vars
@@ -45,9 +45,9 @@ jobs:
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws_access_key: ASIAWS3QKD3DDRBMB4P4
-          aws_secret_key: MgIRT/wCzXWzhH/SHWZdD1eOWR9MdD24w+GjySp6
-          aws_session_token: IQoJb3JpZ2luX2VjEKD//////////wEaCXVzLXdlc3QtMiJGMEQCIAHNUhfLqlCKhSbWF1I6ZuKjRm6l8pqs89xw1YsJpXNrAiA4U6sf/HWUlzWdXNZiZ8YRCx8hlLVrGAAS7AE67OyVDiq0AggZEAEaDDQ1MjgxNzcyMzA3OCIMdyl7qvvCOHMbOEeVKpECjcQq/cRBzbzn49rv2zZEo0zNpXAdGgBy4/5O6zfviraV2KYu1aE4eINekI8Es/l5elqv1dOqQSnbjkYpyCrWB+MImFXrxcXWlLZNR1vDrxAApUDh0QuikpmjOH6oRcoYcL9ubjvhdD5VyY10dJpTNod1x+FwkAn1slaxx9pdkzHqvlXfa4gNGZICm8uIC9+rDAu9vgF2VeuRxCkA6peuJGL/EtEM9648+/0ypRYb+Itzx/8S9D4JjW7dnQQuD5dI00xdh1njaCJGTKKGHHdbpA8X2Ry0nYxEAgJ9Ef3YtvQ0VWyKpujdZhpmIbaXwDsm9ho2AFVDIY22dFa5kVoFA9je3fFOT8v1QosX3x7KJkGfMLi/qLIGOp4BXyA4hjJMJ5wrPV2ui5zXy1lVBIsOZTzimMebGXPbdEcvtJRCmxbjWoO5w2t2bw/5utWFR9u7JILuU1D9EOuphzWpFPiuhTZOmIyFN2FEdi1GAS5AteWwlyWncq4n3Ubi+blfJZbEyVFejcNWpO5LgzuVg8O2rXtN6LaetMAeaS4yGHdSU9DLl991mBLLvB89DZQFNWEmlr2B2Il2E1Q=
+          aws_access_key: ASIAWS3QKD3DKTBGOZAM
+          aws_secret_key: smGCodLU+ixNUkBcXJ4Bezm6bcRN7IMn+O35Agdb
+          aws_session_token: IQoJb3JpZ2luX2VjELz//////////wEaCXVzLXdlc3QtMiJIMEYCIQDECuy4o26kAz8drOXYXQAOOE19SZLF94oRehf3jC2v7QIhAOxt9bkZtfJkX3gUBkN+5ftvb85YVWwudyqOZBvIMZgcKrQCCDQQARoMNDUyODE3NzIzMDc4IgzBUc6eSAqZUSGNoRUqkQJPNfvcdzqY2+xGnOLW3UnNwbdTnL/OsOglcVWot3lyz4s7lAt87eMh0T6OuP8OihdAafy4DZTYJn7c/HDjlF6gloyh5GS+EwRGsToSoZM68u4G2pJu1UvNCljewOm3Vs9EPQ47oHRx6hw2BhiSZ++HBm6RUM6/eDaYG0Eguh/1aCWeZt5yRfI+prm2mvVG7AkwnZBURnK+osjaG5Q5s5TIhvn7w/cL3/fYz++MsLxl3FulirN1sVMMx/7lnW8uskPtvEUzyk7DqBnIahYsslsKa0vmVVR321qNNUHXpBJpCzmAg+FFz4WTSBtUxhquyfTykmi+hGmkpPctCrVqMEXNfgRxyfJAXKqNveucsyqORskw/sOusgY6nAGML0sviLzCgX75IafM1pUpSGwE1TwvZDprPeSdcKUA0C5qmfc2xdk33OKhayEVivyKAH3PSuQdt8pOsG8HaUXcWtuyaM7PjztM421iSE0TigmtavVvWAGR6ahswhX1A/yLzHY+AtTKvROFtVCAq1jLJD6N/8ZWEEh/LVeTLP65YT9enXCjeJig9OxzzlB+S+z7R6KiaD2KRGigy/8=
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
           version_label: ${{ github.run_id }} 
