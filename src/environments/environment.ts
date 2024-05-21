@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://localhost:3000'
+    apiUrl: 'xapp-alb-439058958.us-east-1.elb.amazonaws.com'
 };
