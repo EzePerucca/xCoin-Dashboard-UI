@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     options: any = null;
     pieData: any = null;
     pieOptions: any = null;
+    currentDate = new Date();
     transactions: any[] = [
         {
             "_id": "664a6b85df0bc1dbc450b459",
@@ -32,7 +33,31 @@ export class HomeComponent implements OnInit {
             "sender": "0x3333514446126131",
             "recipient": "0x000999496126131",
             "__v": 0
-        }
+        },
+        {
+            "_id": "664a6d44197af5cd575da7be",
+            "name": "Transfer",
+            "amount": 500,
+            "sender": "0x3333514446126131",
+            "recipient": "0x000999496126131",
+            "__v": 0
+        },
+        {
+            "_id": "664a6d44197af5cd575da7be",
+            "name": "Transfer",
+            "amount": 500,
+            "sender": "0x3333514446126131",
+            "recipient": "0x000999496126131",
+            "__v": 0
+        },
+        {
+            "_id": "664a6d44197af5cd575da7be",
+            "name": "Transfer",
+            "amount": 500,
+            "sender": "0x3333514446126131",
+            "recipient": "0x000999496126131",
+            "__v": 0
+        },
     ];
 
     constructor(
