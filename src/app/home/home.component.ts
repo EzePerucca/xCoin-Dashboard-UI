@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthGoogleService } from '../auth-google.service';
 import { Router } from '@angular/router';
-import { AlchemyApiService } from '../alchemy-api.service';
-import { ApiService } from '../api.service';
+import { AlchemyApiService } from '../services/alchemy-api.service';
+import { ApiService } from '../services/api.service';
 import { catchError, forkJoin, interval, of, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -17,15 +17,22 @@ export class HomeComponent implements OnInit {
     pieData: any = null;
     pieOptions: any = null;
     transactions: any[] = [
-        { name: '5e69b21a330db2e', date: '17:24:18', amount: 250.00 },
-        { name: 'b2eca6578583cce', date: '17:24:02', amount: 125.30 },
-        { name: '578583ccca657db', date: '17:23:40', amount: 780.33 },
-        { name: 'b2eca6578583cce', date: '17:24:02', amount: 125.30 },
-        { name: '578583ccca657db', date: '17:23:40', amount: 780.33 },
-        { name: 'b2eca6578583cce', date: '17:24:02', amount: 125.30 },
-        { name: '5e69b21a330db2e', date: '17:24:18', amount: 250.00 },
-        { name: '578583ccca657db', date: '17:23:40', amount: 780.33 },
-        { name: '5e69b21a330db2e', date: '17:24:18', amount: 250.00 },
+        {
+            "_id": "664a6b85df0bc1dbc450b459",
+            "name": "Transfer",
+            "amount": 1000,
+            "sender": "0x1515148296126131",
+            "recipient": "0x9999948296126131",
+            "__v": 0
+        },
+        {
+            "_id": "664a6d44197af5cd575da7be",
+            "name": "Transfer",
+            "amount": 500,
+            "sender": "0x3333514446126131",
+            "recipient": "0x000999496126131",
+            "__v": 0
+        }
     ];
 
     constructor(
@@ -39,6 +46,7 @@ export class HomeComponent implements OnInit {
         this.initCharts();
         // this.getInfoData();
         this.fetchData().subscribe();
+        this.fetchTransactions().subscribe();
 
         // If you need to refresh data periodically
         interval(60000).pipe( // Adjust the interval as needed
@@ -59,13 +67,36 @@ export class HomeComponent implements OnInit {
                     console.error('POST error (getCurrentGasPrice):', error);
                     return of({ result: null });
                 })
-            )
+            ),
+            maxPriorityFeePerGas: this.alchemyApiService.getMaxPriorityFeePerGas().pipe(
+                catchError(error => {
+                    console.error('POST error (getMaxPriorityFeePerGas):', error);
+                    return of({ result: null });
+                })
+            ),
         }).pipe(
-            tap(({ blockNumber, gasPrice }) => {
+            tap(({ blockNumber, gasPrice, maxPriorityFeePerGas }) => {
                 console.log('POST response (blockNumber):', blockNumber);
                 console.log('POST response (gasPrice):', gasPrice);
                 this.infoData.currentBlockNumber = blockNumber.result;
                 this.infoData.currentGasPrice = gasPrice.result;
+                this.infoData.maxPriorityFeePerGas = maxPriorityFeePerGas.result;
+            })
+        );
+    }
+
+    fetchTransactions() {
+        return forkJoin({
+            transactions: this.apiService.getTransactionHistory().pipe(
+                catchError(error => {
+                    console.error('POST error (getTransactionHistory):', error);
+                    return of({ result: null });
+                })
+            )
+        }).pipe(
+            tap(({ transactions }) => {
+                console.log('POST response (getTransactionHistory):', transactions);
+                this.transactions = transactions;
             })
         );
     }

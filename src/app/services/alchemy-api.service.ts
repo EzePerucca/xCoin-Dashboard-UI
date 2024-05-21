@@ -67,6 +67,19 @@ export class AlchemyApiService {
     });
   }
 
+  getMaxPriorityFeePerGas(): Observable<any> {
+    const body = {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "method": "eth_maxPriorityFeePerGas"
+    }
+    return this.http.post<any>(`${this.apiUrl}`, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
   //#region not used
     getTransactionInfoByHash(transactionHash: any): Observable<any> {
       transactionHash = "0x4241aab8a8dc897ffa6a621af0730ee375eed7b5eac5edcc2b2c80ef9e0671ef";
