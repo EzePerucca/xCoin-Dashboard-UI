@@ -108,18 +108,18 @@
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
                         <span class="font-semibold text-lg">Current Block</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.currentBlockNumber | number}}</span>
+                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.currentBlockNumber}}</span>
                     </div>
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">Gas Price(Wei)</span>
+                        <span class="font-semibold text-lg">Gas Price (Wei)</span>
                         <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.currentGasPrice | number}}</span>
                     </div>
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">Priority Per Gas(Wei)</span>
+                        <span class="font-semibold text-lg">Priority Per Gas (Wei)</span>
                         <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.maxPriorityFeePerGas | number}}</span>
                     </div>
                 </p-card>
@@ -144,5 +144,5 @@
             </div>
         </p-card>
     </div>
-    <p-divider class="col-12"/>
+    <!-- <p-divider class="col-12"/> -->
 </div>
