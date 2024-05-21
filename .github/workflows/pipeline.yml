@@ -1,10 +1,5 @@
 name: CI/CD
 
-env:
-  ACCESS_KEY: ASIAWS3QKD3DGVQMIYXK
-  SECRET_KEY: n66SHz+ldygFna9Nm1o/kz5xG4yenuH76voEVYti
-  SESSION_TOKEN: IQoJb3JpZ2luX2VjENT//////////wEaCXVzLXdlc3QtMiJGMEQCIHknNDI3Gn8bS+hbnpSY+CUWkMj5p5SYoCYnRS97yxZ9AiAgMaps6q+9tBHuS4K+ptJVVGf/cqAKzXMw3oro40DtvSq0AghNEAEaDDQ1MjgxNzcyMzA3OCIMbltoWjJF2WdnKST0KpECMn4AsxJ9yeF1xZm/hxEgAQdnHnUY87ldp0SmXlR+fiPzwkB/wmqz6gjk/TfpjfhewJyWhTAiq2XCw7zgbnVQhcHt59K3WgDUnZGr0sT/KsrASWIv00Ex9pgj+RwqyN4jsy7KwrlVdWQ0o56nvrIqX3lgZy9CVKdwsBrUlmtt0UNF9RmRgCRCu36mToIpP4Jbo0JFGI+1vaSjEBiBHkD72I7wdfrmSaAOhwxOQryiMEw5vwIBpbdsoBvWpfIuW2DTbNL/6q6DZivfMcxZujn6VKpO435sAX+SSQbh2K92q3REAigltVXrfoUKcm33Jh5B01jcldGPbSjzKRFKY/ZJZW+Ilkns/6ek3dS6drtwcfkjMOf8s7IGOp4Bv+qjMWT9xO7pViYBc6r0RBVJt1eK4pxmRj4nVDPa16jQl3Vv6Wcho/+6JpuLXMAw+RUD5pulB0MV+UyRwdMUVxyzONown3zfokAoMFZJApvNfzbSX0LeSC57ynuP+PEvIVmZH6Nwj8ysp+7sPz0Pf1Gsccaou6HITnSSZDzAFOSWIyzXBK11/x86eZr7d8HpJEBT/H/ObTJuMbK9z84=
-
 on:
   push:
     branches:
@@ -21,10 +16,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{env.ACESS_KEY}}
-          aws-secret-access-key: ${{env.SECRET_KEY}}
+          aws-access-key-id: ASIAWS3QKD3DGVQMIYXK
+          aws-secret-access-key: n66SHz+ldygFna9Nm1o/kz5xG4yenuH76voEVYti
           aws-region: us-east-1
-          aws-session-token: ${{env.SESSION_TOKEN}}
+          aws-session-token: IQoJb3JpZ2luX2VjENT//////////wEaCXVzLXdlc3QtMiJGMEQCIHknNDI3Gn8bS+hbnpSY+CUWkMj5p5SYoCYnRS97yxZ9AiAgMaps6q+9tBHuS4K+ptJVVGf/cqAKzXMw3oro40DtvSq0AghNEAEaDDQ1MjgxNzcyMzA3OCIMbltoWjJF2WdnKST0KpECMn4AsxJ9yeF1xZm/hxEgAQdnHnUY87ldp0SmXlR+fiPzwkB/wmqz6gjk/TfpjfhewJyWhTAiq2XCw7zgbnVQhcHt59K3WgDUnZGr0sT/KsrASWIv00Ex9pgj+RwqyN4jsy7KwrlVdWQ0o56nvrIqX3lgZy9CVKdwsBrUlmtt0UNF9RmRgCRCu36mToIpP4Jbo0JFGI+1vaSjEBiBHkD72I7wdfrmSaAOhwxOQryiMEw5vwIBpbdsoBvWpfIuW2DTbNL/6q6DZivfMcxZujn6VKpO435sAX+SSQbh2K92q3REAigltVXrfoUKcm33Jh5B01jcldGPbSjzKRFKY/ZJZW+Ilkns/6ek3dS6drtwcfkjMOf8s7IGOp4Bv+qjMWT9xO7pViYBc6r0RBVJt1eK4pxmRj4nVDPa16jQl3Vv6Wcho/+6JpuLXMAw+RUD5pulB0MV+UyRwdMUVxyzONown3zfokAoMFZJApvNfzbSX0LeSC57ynuP+PEvIVmZH6Nwj8ysp+7sPz0Pf1Gsccaou6HITnSSZDzAFOSWIyzXBK11/x86eZr7d8HpJEBT/H/ObTJuMbK9z84=
           
       - name: Set vars
         id: set-vars
@@ -50,9 +45,9 @@ jobs:
       - name: Deploy application to AWS ElasticBeanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws_access_key: ${{env.ACESS_KEY}}
-          aws_secret_key: ${{env.SECRET_KEY}}
-          aws_session_token: ${{env.SESSION_TOKEN}}
+          aws_access_key: ASIAWS3QKD3DGVQMIYXK
+          aws_secret_key: n66SHz+ldygFna9Nm1o/kz5xG4yenuH76voEVYti
+          aws_session_token: IQoJb3JpZ2luX2VjENT//////////wEaCXVzLXdlc3QtMiJGMEQCIHknNDI3Gn8bS+hbnpSY+CUWkMj5p5SYoCYnRS97yxZ9AiAgMaps6q+9tBHuS4K+ptJVVGf/cqAKzXMw3oro40DtvSq0AghNEAEaDDQ1MjgxNzcyMzA3OCIMbltoWjJF2WdnKST0KpECMn4AsxJ9yeF1xZm/hxEgAQdnHnUY87ldp0SmXlR+fiPzwkB/wmqz6gjk/TfpjfhewJyWhTAiq2XCw7zgbnVQhcHt59K3WgDUnZGr0sT/KsrASWIv00Ex9pgj+RwqyN4jsy7KwrlVdWQ0o56nvrIqX3lgZy9CVKdwsBrUlmtt0UNF9RmRgCRCu36mToIpP4Jbo0JFGI+1vaSjEBiBHkD72I7wdfrmSaAOhwxOQryiMEw5vwIBpbdsoBvWpfIuW2DTbNL/6q6DZivfMcxZujn6VKpO435sAX+SSQbh2K92q3REAigltVXrfoUKcm33Jh5B01jcldGPbSjzKRFKY/ZJZW+Ilkns/6ek3dS6drtwcfkjMOf8s7IGOp4Bv+qjMWT9xO7pViYBc6r0RBVJt1eK4pxmRj4nVDPa16jQl3Vv6Wcho/+6JpuLXMAw+RUD5pulB0MV+UyRwdMUVxyzONown3zfokAoMFZJApvNfzbSX0LeSC57ynuP+PEvIVmZH6Nwj8ysp+7sPz0Pf1Gsccaou6HITnSSZDzAFOSWIyzXBK11/x86eZr7d8HpJEBT/H/ObTJuMbK9z84=
           region: us-east-1
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
