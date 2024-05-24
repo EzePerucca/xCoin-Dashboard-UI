@@ -27,9 +27,9 @@
             <div class="z-2 relative text-white h-9rem">
                 <div class="text-2xl font-semibold mb-2">Welcome back, Elon!</div>
                 <div class="mt-6">
-                    <div class="mb-2 font-semibold">The xWallet Balance</div>
+                    <div class="mb-2 font-semibold">The xWallet Balance is</div>
                     <div class="flex align-items-end justify-content-between mb-1 ml-1">
-                        <span class="text-3xl font-bold">{{xWalletBalance}} xCoins</span>
+                        <span class="text-3xl font-bold">{{xWalletBalance}} XCOIN</span>
                         <span class="font-medium text-sm">{{currentDate | date: 'short'}}</span>
                     </div>
                 </div>
@@ -58,9 +58,8 @@
         <p-card>
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-gauge text-primary text-4xl mb-4"></i>
-                <span class="text-900 text-lg mb-4 font-medium">Approval Rate</span>
-                <span *ngIf="approvalRate" class="text-900 text-2xl text-primary font-bold">{{approvalRate}}</span>
-                <p-progressSpinner *ngIf="!approvalRate" ariaLabel="loading" styleClass="w-1rem h-1rem"/>
+                <span class="text-900 text-lg mb-4 font-medium text-center">xWallet Transactions</span>
+                <span class="text-900 text-2xl text-primary font-bold">{{infoData.xWalletTransactionCount | number}}</span>
             </div>
         </p-card>
     </div>
@@ -85,7 +84,7 @@
                           <span class="text-sm font-medium text-900 mb-1 ml-1">{{ transaction.recipient }}</span>
                       </div>
                     </div>
-                    <span class="text-xl text-900 ml-auto font-semibold">{{ transaction.amount }}</span>
+                    <span class="text-xl text-900 ml-auto font-semibold">{{ transaction.amount }} XCOIN</span>
                 </li>
             </ul>
         </p-card>
@@ -96,12 +95,6 @@
             <p-chart type="line" [data]="chartData" [options]="options" />
         </p-card>
     </div>
-    <!-- <div class="col-12 xl:col-4 max-h-30rem">
-        <p-card class="">
-            <div class="text-900 text-xl font-semibold mb-3">Property Distribution</div>
-            <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" width="350" height="350" />
-        </p-card>
-    </div> -->
     <div class="col-12 xl:col-12 max-h-30rem">
         <p-card class="">
             <div class="text-900 text-xl font-semibold mb-3">Blockchain overview</div>
@@ -132,8 +125,9 @@
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">xWallet Transaction Count</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.xWalletTransactionCount | number}}</span>
+                        <span class="font-semibold text-lg">Approval Rate</span>
+                        <span *ngIf="approvalRate" class="text-900 text-2xl text-primary font-bold">{{approvalRate}}</span>
+                        <p-progressSpinner *ngIf="!approvalRate" ariaLabel="loading" styleClass="w-1rem h-1rem"/>
                     </div>
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">

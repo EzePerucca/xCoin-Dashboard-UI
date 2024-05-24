@@ -129,31 +129,31 @@ export class HomeComponent implements OnInit {
         return forkJoin({
             transactionHistory: this.apiService.getTransactionHistory().pipe(
                 catchError(error => {
-                    console.error('POST error (getTransactionHistory):', error);
+                    console.error('error (getTransactionHistory):', error);
                     return of({ result: null });
                 })
             ),
             xWalletBalance: this.apiService.getXWalletAccountBalance().pipe(
                 catchError(error => {
-                    console.error('POST error (getXWalletAccountBalance):', error);
+                    console.error('error (getXWalletAccountBalance):', error);
                     return of({ result: null });
                 })
             ),
             operatedTotalValueRes: this.apiService.getTotalValueOperated().pipe(
                 catchError(error => {
-                    console.error('POST error (getTotalValueOperated):', error);
+                    console.error('error (getTotalValueOperated):', error);
                     return of({ result: null });
                 })
             ),
             hashRateRes: this.apiService.getHashRate().pipe(
                 catchError(error => {
-                    console.error('POST error (getHashRate):', error);
+                    console.error('error (getHashRate):', error);
                     return of({ result: null });
                 })
             ),
             totalSupply: this.apiService.getTotalSupply().pipe(
                 catchError(error => {
-                    console.error('POST error (getTotalSupply):', error);
+                    console.error('error (getTotalSupply):', error);
                     return of({ result: null });
                 })
             ),
@@ -174,7 +174,7 @@ export class HomeComponent implements OnInit {
         return forkJoin({
             approvalRateRes: this.apiService.getApprovalRate().pipe(
                 catchError(error => {
-                    console.error('POST error (getApprovalRate):', error);
+                    console.error('error (getApprovalRate):', error);
                     return of({ result: null });
                 })
             ),
@@ -225,7 +225,7 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    parseDataToChart(){
+    parseDataToChart() {
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const groupedByYear = this.transactionsHistory.reduce((acc, transaction) => {
             const year = transaction.year;
@@ -236,21 +236,33 @@ export class HomeComponent implements OnInit {
             acc[year][monthIndex]++;
             return acc;
         }, {});
-
+    
+        const currentYear = new Date().getFullYear();
+        const currentYearData = groupedByYear[currentYear];
+        let lastMonthIndex = 11; // Default to December if no transactions found
+    
+        if (currentYearData) {
+            lastMonthIndex = currentYearData.reduce((lastIndex: any, count: number, index: any) => {
+                return count > 0 ? index : lastIndex;
+            }, 0);
+        }
+    
+        const filteredMonthNames = monthNames.slice(0, lastMonthIndex + 1);
+    
         const datasets = Object.keys(groupedByYear).map(year => {
             return {
                 label: `Transactions in ${year}`,
-                data: groupedByYear[year],
+                data: groupedByYear[year].slice(0, lastMonthIndex + 1),
                 fill: false,
                 // borderColor: this.getRandomColor(),
                 tension: 0.4
             };
         });
-
+    
         this.chartData = {
-            labels: monthNames,
+            labels: filteredMonthNames,
             datasets: datasets
-        }
+        };
     }
 
     //#region Session
