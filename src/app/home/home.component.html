@@ -82,7 +82,7 @@
                       <span class="text-xl font-medium text-900 mb-1">{{ transaction.sender }}</span>
                       <div class="ml-1">
                           <i class="pi pi-arrow-down-right text-primary"></i>
-                          <span class="text-sm font-medium text-900 mb-1 ml-1">{{ transaction.sender }}</span>
+                          <span class="text-sm font-medium text-900 mb-1 ml-1">{{ transaction.recipient }}</span>
                       </div>
                     </div>
                     <span class="text-xl text-900 ml-auto font-semibold">{{ transaction.amount }}</span>
@@ -139,7 +139,7 @@
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
                         <span class="font-semibold text-lg">Protocol Version</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.protocolVersion}}</span>
+                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.protocolVersion | number}}</span>
                     </div>
                 </p-card>
             </div>

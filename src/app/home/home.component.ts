@@ -69,15 +69,15 @@ export class HomeComponent implements OnInit {
         this.fetchApprovalRate().subscribe();
         
         
-        interval(10000) // Adjust the interval as needed
+        interval(40000) // Adjust the interval as needed
         .pipe(
             switchMap(() => forkJoin([
                 this.fetchAlchemyData(),
                 this.fetchBackendData(),
-                this.fetchApprovalRate()
+                // this.fetchApprovalRate()
             ]))
         )
-        .subscribe(([alchemyData, backendData, approvalRateRes]) => {
+        .subscribe(([alchemyData, backendData]) => {
 
         });
     }
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
                     return of({ result: null });
                 })
             ),
-            xWalletTransactCount: this.alchemyApiService.getProtocolVersion().pipe(
+            xWalletTransactCount: this.alchemyApiService.getXWalletTransactionCount().pipe(
                 catchError(error => {
                     console.error('POST error (getProtocolVersion):', error);
                     return of({ result: null });
