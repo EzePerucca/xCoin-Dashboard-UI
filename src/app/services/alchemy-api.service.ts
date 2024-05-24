@@ -80,6 +80,35 @@ export class AlchemyApiService {
     });
   }
 
+  getProtocolVersion(): Observable<any> {
+    const body = {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "method": "eth_protocolVersion"
+    }
+    return this.http.post<any>(`${this.apiUrl}`, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  getXWalletTransactionCount(): Observable<any> {
+    const body = {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "params": [
+        "0x8A0da10861c24A818B600F971a983432044bBcfd"
+      ],
+      "method": "eth_getTransactionCount"
+    }
+    return this.http.post<any>(`${this.apiUrl}`, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
   //#region not used
     getTransactionInfoByHash(transactionHash: any): Observable<any> {
       transactionHash = "0x4241aab8a8dc897ffa6a621af0730ee375eed7b5eac5edcc2b2c80ef9e0671ef";

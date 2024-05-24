@@ -19,7 +19,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,8 @@ import { TooltipModule } from 'primeng/tooltip';
     InputNumberModule,
     TableModule,
     TagModule,
-    TooltipModule
-
+    TooltipModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

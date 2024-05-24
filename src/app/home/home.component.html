@@ -27,9 +27,9 @@
             <div class="z-2 relative text-white h-9rem">
                 <div class="text-2xl font-semibold mb-2">Welcome back, Elon!</div>
                 <div class="mt-6">
-                    <div class="mb-2 font-semibold">Your xCoin Balance</div>
+                    <div class="mb-2 font-semibold">The xWallet Balance</div>
                     <div class="flex align-items-end justify-content-between mb-1 ml-1">
-                        <span class="text-3xl font-bold">7,890,745</span>
+                        <span class="text-3xl font-bold">{{xWalletBalance}} xCoins</span>
                         <span class="font-medium text-sm">{{currentDate | date: 'short'}}</span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-money-bill text-primary text-4xl mb-4"></i>
                 <span class="text-900 text-lg mb-4 font-medium">Total Supply</span>
-                <span class="text-900 text-2xl text-primary font-bold">24,345</span>
+                <span class="text-900 text-2xl text-primary font-bold">{{totalSupply}}</span>
             </div>
         </p-card>
     </div>
@@ -50,7 +50,7 @@
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-bitcoin text-primary text-4xl mb-4"></i>
                 <span class="text-900 text-lg mb-4 font-medium">Token Value</span>
-                <span class="text-900 text-2xl text-primary font-bold">$10,416.11</span>
+                <span class="text-900 text-2xl text-primary font-bold">$1</span>
             </div>
         </p-card>
     </div>
@@ -59,7 +59,8 @@
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-gauge text-primary text-4xl mb-4"></i>
                 <span class="text-900 text-lg mb-4 font-medium">Approval Rate</span>
-                <span class="text-900 text-2xl text-primary font-bold">24,345</span>
+                <span *ngIf="approvalRate" class="text-900 text-2xl text-primary font-bold">{{approvalRate}}</span>
+                <p-progressSpinner *ngIf="!approvalRate" ariaLabel="loading" styleClass="w-1rem h-1rem"/>
             </div>
         </p-card>
     </div>
@@ -67,8 +68,8 @@
         <p-card>
             <div class="flex flex-column align-items-center justify-content-center p-2">
                 <i class="pi pi-dollar text-primary text-4xl mb-4"></i>
-                <span class="text-900 text-lg mb-4 font-medium">Total Value</span>
-                <span class="text-900 text-2xl text-primary font-bold">$1,805,416.11</span>
+                <span class="text-900 text-lg mb-4 font-medium">Operated Value</span>
+                <span class="text-900 text-2xl text-primary font-bold">{{operatedTotalValue | currency}}</span>
             </div>
         </p-card>
     </div>
@@ -76,7 +77,7 @@
         <p-card class="full-h-card">
             <div class="text-900 text-xl font-semibold mb-3">Recent Transactions</div>
             <ul class="list-none p-0 m-0" style="max-height: 500px; overflow-y: auto;">
-                <li *ngFor="let transaction of transactions" class="flex align-items-end p-3 mb-3 border-bottom-1 surface-border">
+                <li *ngFor="let transaction of recentTransactions" class="flex align-items-end p-3 mb-3 border-bottom-1 surface-border">
                     <div class="flex flex-column">
                       <span class="text-xl font-medium text-900 mb-1">{{ transaction.sender }}</span>
                       <div class="ml-1">
@@ -125,20 +126,20 @@
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">Priority Per Gas (Wei)</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.maxPriorityFeePerGas | number}}</span>
+                        <span class="font-semibold text-lg">Hash Rate</span>
+                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{hashRate}}</span>
                     </div>
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">Priority Per Gas (Wei)</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.maxPriorityFeePerGas | number}}</span>
+                        <span class="font-semibold text-lg">xWallet Transaction Count</span>
+                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.xWalletTransactionCount | number}}</span>
                     </div>
                 </p-card>
                 <p-card class="col-4 sm:col-6 md:col-4 xl:col-2">
                     <div class="flex flex-column gap-5 justify-content-between align-items-start h-full">
-                        <span class="font-semibold text-lg">Priority Per Gas (Wei)</span>
-                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.maxPriorityFeePerGas | number}}</span>
+                        <span class="font-semibold text-lg">Protocol Version</span>
+                        <span class="sm:text-sm md:text-sm xl:text-2xl font-bold text-900">{{infoData.protocolVersion}}</span>
                     </div>
                 </p-card>
             </div>
