@@ -25,10 +25,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ASIAWS3QKD3DPSPXQ4AS
-          aws-secret-access-key: My5JOKpfg54WceKMsXjiMn32LZmaKC3IVKPRETfQ
+          aws-access-key-id: ASIAWS3QKD3DDD3VMVF5
+          aws-secret-access-key: qbloVt0uIl71aBOIRtWL3bmjX8jvIfA7GoUvnf3D
           aws-region: us-east-1
-          aws-session-token: IQoJb3JpZ2luX2VjEBUaCXVzLXdlc3QtMiJIMEYCIQDf65gVwCMqQSafbIXXvCVZeBz9LEqJFfsoGNvV9jg3AQIhANFTiKvea4i+TwVvdLZDw/tHVYxCtGWtfRj2x8M4Ou9SKr0CCI7//////////wEQARoMNDUyODE3NzIzMDc4IgwbcM1NJFVGD7Rhh+YqkQLfQgKaYLO3R03l3SkZfawRMLD05mYsLzJkGh1+6ZanYEF+VdVlLwLaVRl9QcVBkndI3fI2pi8edHJVgCWFMVXZ9NjiDx00Cze7hjx9DlkQoJSKJelo/yoHN9nXiTHpuxexPrfiWPK5iH9VjZ6DEO2u6qZjdoLB4Pca2SPBrz1/WDIgx+rVrgCPH3axVtiX7kPbZbUa1oRpc1+BPbhmM/oe7fMtvSeVIikeEN6/8ckm5y2tzhtm+S5AhGFfzl/OUU0iDBNf2EBgN/5u3Q7+g5GIE1lVb0KnuKUD7yg2USxp95tzteQxjpf7WU+qJRNY5O3/z44BnyAQh5abMhsq9ciEX6dErUq/SFMUHbn7Xxo/Ws0wrJfCsgY6nAFx84Tgdl7tG9KYi2xwKeocYX1/dBmkv9Jzeo1lRkNIW0L506HfFeNVVw3HnkAhdgp6Klub0WPmmL/INGa9QE2pWnkrfVDLGgLWUVz2K6Q6TGMIxjAx+6M6TVuU4SEjM/q1wPTnj0bkm3IpDPlnm1FqYZh2SbWpuNAOmThaSK9qwmyjcLjnNjeJidZenuBD8/40Sz2OOVqe9+40BYM=
+          aws-session-token: IQoJb3JpZ2luX2VjEBkaCXVzLXdlc3QtMiJHMEUCIH3Ql6ABprGSsNnba0Ekldg078z4bMquawAC4kUaPQUOAiEAnGkO3HziwO5SH0juhxsfbY3WeaWs6/i2FgCiKbklunoqvQIIkv//////////ARABGgw0NTI4MTc3MjMwNzgiDAurWSoDrTSQWK5eNSqRAs9gm/moHP1wUZgkpDA+Ih2zwo80gaU53coSFvF82g3xLlWr5mr2TID1LQpwNAGjpSsIxdElpGDzMKzBz5m5FYtMVBBdY5wYJPAwxmsCfETOYfVX95EEZDu+ySlntxModc7uXFX4JPskSHmbc4qy0F4BRvc+HHkHkqM5unYdwYXUakVdu3/jrnTIDluSjL8Uve0uSYzDl91naz1BefVgOm0hObPuS9NM0mjQSVwZBuZT8sL0NiMWNK+5FMFyF/Pmmc5B8JIjDNK6T670JeZED8RF5Pufx/fYG5fvJ4i1Mq6kuOOHYkOmmpa4nH+QyZMU9dRvrtuKjCpDBPI9dc9CoTtquVDoxCj/Ne2sPn5S0ol0kzCnlcOyBjqdAc8817011ok29FYudPiEVxUZ8Y9lnFn1tSJ5abVFrvdnJAUX8qsKgvFZBsSRgYNxbjQGqnhOHnacFlGjDskU36Plsbc8GzO1Fv8j2jvw9Usj601kQ2ez/MyDvzXuEFgJ4BfnrcPr50yNKuG2TLxOKXbaNLuRsjQJ/h/DDivH0QgzYwMCm3antaD7BVuTQUFjkq9wIrb4qmgyAIltYG0=
 
   build:
     needs: [checkout,configureAWS]
@@ -56,9 +56,9 @@ jobs:
       - name: Deploy application to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws_access_key: ASIAWS3QKD3DPSPXQ4AS
-          aws_secret_key: My5JOKpfg54WceKMsXjiMn32LZmaKC3IVKPRETfQ
-          aws_session_token: IQoJb3JpZ2luX2VjEBUaCXVzLXdlc3QtMiJIMEYCIQDf65gVwCMqQSafbIXXvCVZeBz9LEqJFfsoGNvV9jg3AQIhANFTiKvea4i+TwVvdLZDw/tHVYxCtGWtfRj2x8M4Ou9SKr0CCI7//////////wEQARoMNDUyODE3NzIzMDc4IgwbcM1NJFVGD7Rhh+YqkQLfQgKaYLO3R03l3SkZfawRMLD05mYsLzJkGh1+6ZanYEF+VdVlLwLaVRl9QcVBkndI3fI2pi8edHJVgCWFMVXZ9NjiDx00Cze7hjx9DlkQoJSKJelo/yoHN9nXiTHpuxexPrfiWPK5iH9VjZ6DEO2u6qZjdoLB4Pca2SPBrz1/WDIgx+rVrgCPH3axVtiX7kPbZbUa1oRpc1+BPbhmM/oe7fMtvSeVIikeEN6/8ckm5y2tzhtm+S5AhGFfzl/OUU0iDBNf2EBgN/5u3Q7+g5GIE1lVb0KnuKUD7yg2USxp95tzteQxjpf7WU+qJRNY5O3/z44BnyAQh5abMhsq9ciEX6dErUq/SFMUHbn7Xxo/Ws0wrJfCsgY6nAFx84Tgdl7tG9KYi2xwKeocYX1/dBmkv9Jzeo1lRkNIW0L506HfFeNVVw3HnkAhdgp6Klub0WPmmL/INGa9QE2pWnkrfVDLGgLWUVz2K6Q6TGMIxjAx+6M6TVuU4SEjM/q1wPTnj0bkm3IpDPlnm1FqYZh2SbWpuNAOmThaSK9qwmyjcLjnNjeJidZenuBD8/40Sz2OOVqe9+40BYM=
+          aws_access_key: ASIAWS3QKD3DDD3VMVF5
+          aws_secret_key: qbloVt0uIl71aBOIRtWL3bmjX8jvIfA7GoUvnf3D
+          aws_session_token: IQoJb3JpZ2luX2VjEBkaCXVzLXdlc3QtMiJHMEUCIH3Ql6ABprGSsNnba0Ekldg078z4bMquawAC4kUaPQUOAiEAnGkO3HziwO5SH0juhxsfbY3WeaWs6/i2FgCiKbklunoqvQIIkv//////////ARABGgw0NTI4MTc3MjMwNzgiDAurWSoDrTSQWK5eNSqRAs9gm/moHP1wUZgkpDA+Ih2zwo80gaU53coSFvF82g3xLlWr5mr2TID1LQpwNAGjpSsIxdElpGDzMKzBz5m5FYtMVBBdY5wYJPAwxmsCfETOYfVX95EEZDu+ySlntxModc7uXFX4JPskSHmbc4qy0F4BRvc+HHkHkqM5unYdwYXUakVdu3/jrnTIDluSjL8Uve0uSYzDl91naz1BefVgOm0hObPuS9NM0mjQSVwZBuZT8sL0NiMWNK+5FMFyF/Pmmc5B8JIjDNK6T670JeZED8RF5Pufx/fYG5fvJ4i1Mq6kuOOHYkOmmpa4nH+QyZMU9dRvrtuKjCpDBPI9dc9CoTtquVDoxCj/Ne2sPn5S0ol0kzCnlcOyBjqdAc8817011ok29FYudPiEVxUZ8Y9lnFn1tSJ5abVFrvdnJAUX8qsKgvFZBsSRgYNxbjQGqnhOHnacFlGjDskU36Plsbc8GzO1Fv8j2jvw9Usj601kQ2ez/MyDvzXuEFgJ4BfnrcPr50yNKuG2TLxOKXbaNLuRsjQJ/h/DDivH0QgzYwMCm3antaD7BVuTQUFjkq9wIrb4qmgyAIltYG0=
           region: us-east-1
           application_name: xcoinwallet 
           environment_name: xcoin-wallet-prod
