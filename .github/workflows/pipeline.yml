@@ -6,12 +6,22 @@ on:
       - main
 
 jobs:
-  configureAWS:
+  checkout:
     runs-on: self-hosted
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
+      
+      - name: Set vars
+        run: |
+          echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
 
+
+  configureAWS:
+    needs: [checkout]
+    runs-on: self-hosted
+    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -19,25 +29,19 @@ jobs:
           aws-secret-access-key: XGYjC6X4Pxhbue0rcHR1mmf3+jksby0osUCK1ugQ
           aws-region: us-east-1
           aws-session-token: IQoJb3JpZ2luX2VjEA8aCXVzLXdlc3QtMiJIMEYCIQDUAZPsiDFgbwXoAKl5EyXaDvyK5ICgUCU1fvmE78KN3gIhAJG1QtoCTmiqE/c7UbkRrB697bz6XFX5M7kHFHWghFmxKr0CCIf//////////wEQARoMNDUyODE3NzIzMDc4IgyU0S6M4HZFsM+UaaUqkQIOFpB2RrjMyGw92iUQBFNE8HyaKIqYSUDITvk3mBoiEeY16PBAOAyDmPDLpLNRINa1bPsYzDk/xxusLheVjpzYT5gFWVoVjfSPA9lNoIQKuLvZdLfTBWQfXT/iDNlMxMz0mYiYDdbdZlt+u4ueMq8COMhtdZbB0jqoCi4FSe2afEw7NNk3f3m3wCjwkgmsSu4gXXe95KzYBOXXZmBtW7tu1REh6LvesIaiTUcQUAo4ibiGUyqoRNsYjftTUCqo/xHePde4X0Z1kDJ62zYJ0FUz6PeCf+iwcocGNdqxYQhpisvl3hc8BvfVsriWbnjAfBSlmTCrEpK+Nf4ea88+8syJLdKlPQxzJkCx6+JMw2KqD9Uwt+PAsgY6nAHlAlfDJLz3pGmVgE2l9AAkY6T1urpuS3ez5LowkeKNsAiWMAQSgJUDjEwV4ZOGnw+ZMjGPQJGMDZwPGBEQembuHEQbzUMwdR/Ce8XihVHTk8Zl7OzRqh5bBf/eTxb97YFf6+D4zXqOp46W9N42Vqc3FxR3oNozvsVmEI0PDNPx9v949sxebHm+zYds0jTza3wr0eueCSq8a/nrATw=
-          
-      - name: Set vars
-        id: set-vars
-        run: |
-          echo "short_sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
-          echo "build_time=$(date +'%Y%m%d-%s')" >> $GITHUB_OUTPUT
 
   build:
-    needs: [configureAWS]
+    needs: [checkout,configureAWS]
     runs-on: self-hosted
     steps:
-      - name: Install
-        id: install
+      - name: Install dependencies
         run: npm install
       
-      - name: Build
-        id: build
+      - name: Build application
+        run: npm run build --prod
+
+      - name: Package application
         run: |
-          npm run build --prod
           mv dist runner/
           pwd
           cd runner/
@@ -46,10 +50,10 @@ jobs:
           mv xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
 
   deploy:
-    needs: [configureAWS,build]
+    needs: [build]
     runs-on: self-hosted
     steps:
-      - name: Deploy application to AWS ElasticBeanstalk
+      - name: Deploy application to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
           aws_access_key: ASIAWS3QKD3DBCNMV5PH
