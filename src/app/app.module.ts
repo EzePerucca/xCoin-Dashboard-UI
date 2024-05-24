@@ -20,12 +20,14 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TruncateAddressPipe } from './truncate-address.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    TruncateAddressPipe,
   ],
   imports: [
     BrowserModule,

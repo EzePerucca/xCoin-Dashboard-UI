@@ -78,10 +78,10 @@
             <ul class="list-none p-0 m-0" style="max-height: 500px; overflow-y: auto;">
                 <li *ngFor="let transaction of recentTransactions" class="flex align-items-end p-3 mb-3 border-bottom-1 surface-border">
                     <div class="flex flex-column">
-                      <span class="text-xl font-medium text-900 mb-1">{{ transaction.sender }}</span>
+                      <span class="text-xl font-medium text-900 mb-1" [pTooltip]="transaction.sender" [autoHide]="false">{{ transaction.sender | truncateAddress }}</span>
                       <div class="ml-1">
                           <i class="pi pi-arrow-down-right text-primary"></i>
-                          <span class="text-sm font-medium text-900 mb-1 ml-1">{{ transaction.recipient }}</span>
+                          <span class="text-sm font-medium text-900 mb-1 ml-1" [pTooltip]="transaction.recipient" [autoHide]="false">{{ transaction.recipient | truncateAddress}}</span>
                       </div>
                     </div>
                     <span class="text-xl text-900 ml-auto font-semibold">{{ transaction.amount }} XCOIN</span>

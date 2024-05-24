@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit {
             ),
         }).pipe(
             tap(({ transactionHistory, xWalletBalance, operatedTotalValueRes, hashRateRes, totalSupply }) => {
-                this.recentTransactions = transactionHistory.slice(0, 10);
+                this.recentTransactions = transactionHistory.slice(-10).reverse();
                 this.transactionsHistory = transactionHistory;
                 this.xWalletBalance = xWalletBalance.balance;
                 this.operatedTotalValue = operatedTotalValueRes.totalValueOperated;
