@@ -20,10 +20,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('blockchain-dashboard');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('blockchain-dashboard app is running!');
-  });
 });

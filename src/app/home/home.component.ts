@@ -18,42 +18,10 @@ export class HomeComponent implements OnInit {
     recentTransactions: any[] = []
     xWalletBalance = 0;
     operatedTotalValue = 0;
-    approvalRate = null;
+    approvalRate: any | null = null;
     hashRate = 0;
     totalSupply = 0;
     transactionsHistory: any[] = [];
-    // [
-    //     // Datos para 2023
-    //     { "name": "Transfer", "amount": "3000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "3", "year": "2023" },
-    //     { "name": "Transfer", "amount": "4000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "4", "year": "2023" },
-    //     { "name": "Transfer", "amount": "5000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "5", "year": "2023" },
-    //     { "name": "Transfer", "amount": "6000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "6", "year": "2023" },
-    //     { "name": "Transfer", "amount": "7000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "7", "year": "2023" },
-    //     { "name": "Transfer", "amount": "8000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "8", "year": "2023" },
-    //     { "name": "Transfer", "amount": "9000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "9", "year": "2023" },
-    //     { "name": "Transfer", "amount": "10000", "sender": "0x111", "recipient": "0x222", "day": "10", "month": "10", "year": "2023" },
-    //     { "name": "Transfer", "amount": "10000", "sender": "0x111", "recipient": "0x222", "day": "10", "month": "10", "year": "2023" },
-    //     { "name": "Transfer", "amount": "10000", "sender": "0x111", "recipient": "0x222", "day": "10", "month": "10", "year": "2023" },
-    //     { "name": "Transfer", "amount": "11000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "11", "year": "2023" },
-    //     { "name": "Transfer", "amount": "11000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "11", "year": "2023" },
-    //     { "name": "Transfer", "amount": "12000", "sender": "0x111", "recipient": "0x222", "day": "1", "month": "12", "year": "2023" },
-      
-    //     // Datos para 2024
-    //     { "name": "Transfer", "amount": "13000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "1", "year": "2024" },
-    //     { "name": "Transfer", "amount": "14000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "2", "year": "2024" },
-    //     { "name": "Transfer", "amount": "15000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "3", "year": "2024" },
-    //     { "name": "Transfer", "amount": "15000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "3", "year": "2024" },
-    //     { "name": "Transfer", "amount": "15000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "3", "year": "2024" },
-    //     { "name": "Transfer", "amount": "15000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "3", "year": "2024" },
-    //     { "name": "Transfer", "amount": "15000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "3", "year": "2024" },
-    //     { "name": "Transfer", "amount": "16000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "4", "year": "2024" },
-    //     { "name": "Transfer", "amount": "17000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "5", "year": "2024" },
-    //     { "name": "Transfer", "amount": "17000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "5", "year": "2024" },
-    //     { "name": "Transfer", "amount": "17000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "5", "year": "2024" },
-    //     { "name": "Transfer", "amount": "17000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "5", "year": "2024" },
-    //     { "name": "Transfer", "amount": "18000", "sender": "0x333", "recipient": "0x444", "day": "1", "month": "6", "year": "2024" },
-    //   ];
-    
 
     constructor(
         private authGoogleService: AuthGoogleService,
