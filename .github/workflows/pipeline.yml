@@ -25,10 +25,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ASIAWS3QKD3DFWO62UGO
-          aws-secret-access-key: dJX24r/kXGAXrDUfzO9zm91JrO4J+AkM0I3DDq7c
+          aws-access-key-id: ASIAT43JXY7MOEO6KUEI
+          aws-secret-access-key: QZTYRG5yeQYNWB7Wnpey4aISZjd7rdS+I9AFCMJx
           aws-region: us-east-1
-          aws-session-token: IQoJb3JpZ2luX2VjEB4aCXVzLXdlc3QtMiJIMEYCIQCj/R/ITMQ92BKWABT7Fmnrg2mUnQ7xGBgBtYE7omGIwgIhAPvsHTKYGRsNSTzzL0cxyctxRgHdxocLEQVWx2jRrKGUKr0CCJf//////////wEQARoMNDUyODE3NzIzMDc4IgzOWqH4aF8tcwVvdV0qkQIzqLiv0TZt9tlIRqBTMDXZtpQlcYlP2kImTTiXAWmmpTBYxoBXIFfa/bBM5mvS2cfBGWvS8abhUAYcSx+YOYAfeh1KywCSs5MhGvz74Q0A/bPJbfrQq+3OPJkocbV7cyOil+nxm9UYYaw4bVWWWUs9PNA5Ud8aEIbBJG+/yK432nHjzpxlir1MmcVev5AWvAAmIZgXOORAH/lO1NFzDjNXN953fCsrfzkpv+Xt3B3GWe3QjnnzzEamn2JGBoIpWkebH6qgcIBXuKJi4d0m299h76EpDG3OtAwLuzDbfs3DRY1qfcYRlvRXU8EH+xs8Y9VXkG+6zcorTCzSZGDVxInXodsy7JaZ+UHnxVmbThUz6jow1I3EsgY6nAEXqqQdvpgl6Y7j6ffiIn81iGRnMyuWGHldmt9ti4XP0wmDIL0NtGKxPw/TCk5ZFxqSEX4mOhqVK6NDMUPwDzXLOdzPDTHGUHtq/4qJQyCpvY3e7h3JhGj+SzfH617fvw6IhsV4mE/QOHT09RVAFI7sV1Ok05pL71hLjlLEosclp41BSq2Jacqn32jtaaf4FAx7Q+Uzj3uGhhQ+0xc=
+          aws-session-token: IQoJb3JpZ2luX2VjEEUaCXVzLXdlc3QtMiJHMEUCIQCQKfhMiCNvwNqNglbXzgJitruDYzbyVnrcGwyAx6Qe+QIgEE4alOMNtfZDMChu/VSDs4FjSQSsuh2oqTsIoSU/bLUqvgII7v//////////ARAAGgwyNjgxMjAzNDQ1MzYiDAkI/2qWUO7Kox/0+SqSAitSXy1NIFUbZO/zf6JAC78br9q6/nsjsXkKEirHbqKU3+Sw+Cw+76AFF7xHn+dUCGZxuRGgHYqJs7Dg7SIgy+kOYAbEqEI+HT0dKhnwCa5r5zfa5ZZikZgi/ow/OAW/rqt47TgPyVwEjQhUXDGE2kHLEQHLKgDskIfBfr2SLAsyWC+l6pWgEWf2p/Lz3olOadUS5rY4copYwNXxb7wZwGZKplXcBk0PVgroyIIWaYgu0a0C2zqRquPCWzVR1QZDKj3WoFVZf6/FnF73rp7WCwqGzM6R6dGj+O05wWhU6lBROVT1Z/MTniAZpsyBfDzl7Y2dNhFLhgi/Zf6Ue+WZNRFIE5cYxE1tzY2V9ddWcSZJLTowqsT1swY6nQENYEDTRl5A567Zt5ImG08YUVxBoMCG+8xmMWa5LSi4mye28WUanwnM/SeLvqeE9CbwDB7/MeIDR6ZASY9dBJCQ8f3MsNPqTe8nkeGxA6pTzyPa/9qjLJTCobC9jWiRQSsdffULYOXqpJV+EcEmpRmMKZvJZ5igTMD8K+0m2qjQp3zrwxLv415k5B55BmZhWbAb6CIbORtm3IEje9aM
 
   build:
     needs: [checkout,configureAWS]
@@ -36,6 +36,23 @@ jobs:
     steps:
       - name: Install dependencies
         run: npm install
+        
+      - name: Run tests
+        run: ng test --code-coverage
+
+      - name: SonarQube scan
+        run: |
+          npx sonar-scanner \
+            -Dsonar.projectKey=xcoinDashboard \
+            -Dsonar.organization=xcoinDashboard \
+            -Dsonar.projectVersion=1.0 \
+            -Dsonar.host.url=http://ec2-107-22-222-188.compute-1.amazonaws.com:9000 \
+            -Dsonar.login=625d04f4150d4368738baf4abe7934b04bce9c2f \
+            -Dsonar.sources=src \
+            -Dsonar.tests=src \
+            -Dsonar.exclusions=**/*.spec.ts \
+            -Dsonar.test.inclusions=**/*.spec.ts \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
       
       - name: Build application
         run: npm run build --prod
@@ -47,8 +64,8 @@ jobs:
           pwd
           cd runner/
           rm package-lock.json
-          zip -r xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
-          mv xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
+          zip -r xcoindashboard-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip .
+          mv xcoindashboard-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip /home/ubuntu/actions-runner/_work/xCoin-Dashboard-UI/xCoin-Dashboard-UI/
 
   deploy:
     needs: [build]
@@ -57,11 +74,11 @@ jobs:
       - name: Deploy application to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
-          aws_access_key: ASIAWS3QKD3DFWO62UGO
-          aws_secret_key: dJX24r/kXGAXrDUfzO9zm91JrO4J+AkM0I3DDq7c
-          aws_session_token: IQoJb3JpZ2luX2VjEB4aCXVzLXdlc3QtMiJIMEYCIQCj/R/ITMQ92BKWABT7Fmnrg2mUnQ7xGBgBtYE7omGIwgIhAPvsHTKYGRsNSTzzL0cxyctxRgHdxocLEQVWx2jRrKGUKr0CCJf//////////wEQARoMNDUyODE3NzIzMDc4IgzOWqH4aF8tcwVvdV0qkQIzqLiv0TZt9tlIRqBTMDXZtpQlcYlP2kImTTiXAWmmpTBYxoBXIFfa/bBM5mvS2cfBGWvS8abhUAYcSx+YOYAfeh1KywCSs5MhGvz74Q0A/bPJbfrQq+3OPJkocbV7cyOil+nxm9UYYaw4bVWWWUs9PNA5Ud8aEIbBJG+/yK432nHjzpxlir1MmcVev5AWvAAmIZgXOORAH/lO1NFzDjNXN953fCsrfzkpv+Xt3B3GWe3QjnnzzEamn2JGBoIpWkebH6qgcIBXuKJi4d0m299h76EpDG3OtAwLuzDbfs3DRY1qfcYRlvRXU8EH+xs8Y9VXkG+6zcorTCzSZGDVxInXodsy7JaZ+UHnxVmbThUz6jow1I3EsgY6nAEXqqQdvpgl6Y7j6ffiIn81iGRnMyuWGHldmt9ti4XP0wmDIL0NtGKxPw/TCk5ZFxqSEX4mOhqVK6NDMUPwDzXLOdzPDTHGUHtq/4qJQyCpvY3e7h3JhGj+SzfH617fvw6IhsV4mE/QOHT09RVAFI7sV1Ok05pL71hLjlLEosclp41BSq2Jacqn32jtaaf4FAx7Q+Uzj3uGhhQ+0xc=
+          aws_access_key: ASIAT43JXY7MOEO6KUEI
+          aws_secret_key: QZTYRG5yeQYNWB7Wnpey4aISZjd7rdS+I9AFCMJx
+          aws_session_token: IQoJb3JpZ2luX2VjEEUaCXVzLXdlc3QtMiJHMEUCIQCQKfhMiCNvwNqNglbXzgJitruDYzbyVnrcGwyAx6Qe+QIgEE4alOMNtfZDMChu/VSDs4FjSQSsuh2oqTsIoSU/bLUqvgII7v//////////ARAAGgwyNjgxMjAzNDQ1MzYiDAkI/2qWUO7Kox/0+SqSAitSXy1NIFUbZO/zf6JAC78br9q6/nsjsXkKEirHbqKU3+Sw+Cw+76AFF7xHn+dUCGZxuRGgHYqJs7Dg7SIgy+kOYAbEqEI+HT0dKhnwCa5r5zfa5ZZikZgi/ow/OAW/rqt47TgPyVwEjQhUXDGE2kHLEQHLKgDskIfBfr2SLAsyWC+l6pWgEWf2p/Lz3olOadUS5rY4copYwNXxb7wZwGZKplXcBk0PVgroyIIWaYgu0a0C2zqRquPCWzVR1QZDKj3WoFVZf6/FnF73rp7WCwqGzM6R6dGj+O05wWhU6lBROVT1Z/MTniAZpsyBfDzl7Y2dNhFLhgi/Zf6Ue+WZNRFIE5cYxE1tzY2V9ddWcSZJLTowqsT1swY6nQENYEDTRl5A567Zt5ImG08YUVxBoMCG+8xmMWa5LSi4mye28WUanwnM/SeLvqeE9CbwDB7/MeIDR6ZASY9dBJCQ8f3MsNPqTe8nkeGxA6pTzyPa/9qjLJTCobC9jWiRQSsdffULYOXqpJV+EcEmpRmMKZvJZ5igTMD8K+0m2qjQp3zrwxLv415k5B55BmZhWbAb6CIbORtm3IEje9aM
           region: us-east-1
-          application_name: xcoinwallet 
-          environment_name: xcoin-wallet-prod
+          application_name: xcoindashboard 
+          environment_name: xcoindashboard-env
           version_label: ${{ github.run_id }} 
-          deployment_package: xwallet-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
+          deployment_package: xcoindashboard-${{ steps.set-vars.outputs.short_sha }}-${{ steps.set-vars.outputs.build_time }}.zip
