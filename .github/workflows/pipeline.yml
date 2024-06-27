@@ -38,7 +38,9 @@ jobs:
         run: npm install
         
       - name: Run tests
-        run: ng test --code-coverage
+        run: |
+          export CHROME_BIN=/usr/bin/google-chrome
+          ng test --code-coverage
 
       - name: SonarQube scan
         run: |
