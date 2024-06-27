@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://xapp-alb-439058958.us-east-1.elb.amazonaws.com'
+    apiUrl: 'http://xapp-alb-190033537.us-east-1.elb.amazonaws.com'
 };
