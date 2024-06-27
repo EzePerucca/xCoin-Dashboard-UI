@@ -40,7 +40,7 @@ jobs:
       - name: Run tests
         run: |
           export CHROME_BIN=/usr/bin/google-chrome
-          ng test --code-coverage
+          ng test --code-coverage --browsers=ChromeHeadless --watch=false
 
       - name: SonarQube scan
         run: |
